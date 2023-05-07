@@ -24,7 +24,16 @@ mongoose.set("debug", true);
 mongoose.Promise = global.Promise;
 
 mongoose
-  .connect(`${db_url}/${databaseName}`)
+  .connect(`${db_url}/${databaseName}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // Set the write concern change here
+    writeConcern: {
+      w: "majority",
+      j: true,
+      wtimeout: 1000,
+    },
+  })
   .then(() => {
     console.log(`Connected to ${databaseName}`);
   })
