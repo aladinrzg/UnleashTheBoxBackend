@@ -296,39 +296,3 @@ export async function updateUserCurrency(req, res) {
     res.status(500).json({ error: "Internal server error" });
   }
 }
-
-// export async function getUserCurrency(req, res) {
-//   try {
-//     if (!req.headers.authorization) {
-//       return res.status(401).json({ error: "Unauthorized access" });
-//     }
-
-//     const token = req.headers.authorization.split(" ")[1];
-//     const decodedToken = jwt.verify(token, process.env.TOKENSECRET);
-//     const userId = decodedToken.userId;
-
-//     if (!userId) {
-//       return res.status(400).json({ error: "userId is required" });
-//     }
-
-//     const user = await User.findById(userId, "name coins diamonds");
-
-//     if (!user) {
-//       return res.status(404).json({ error: "User not found" });
-//     }
-
-//     res.status(200).json({
-//       message: "User currency retrieved successfully",
-//       username: user.username,
-//       coins: user.coins,
-//       diamonds: user.diamonds,
-//     });
-//   } catch (error) {
-//     if (error.name === "JsonWebTokenError") {
-//       return res.status(401).json({ error: "Unauthorized access" });
-//     }
-
-//     console.error("Error retrieving user currency:", error);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// }
