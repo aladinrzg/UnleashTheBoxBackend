@@ -32,10 +32,10 @@ mongoose
       w: "majority",
       j: true,
       wtimeout: 1000,
-      useNewUrlParser: true,
-      useUnifiedTopology: true, // to handle the warnings maybe in latest version we will ignore that
-      dbName: "UnleashTheBox",
     },
+    useNewUrlParser: true,
+    useUnifiedTopology: true, // to handle the warnings maybe in latest version we will ignore that
+    dbName: "UnleashTheBox",
   })
   .then(() => {
     console.log(`Connected to ${databaseName}`);
