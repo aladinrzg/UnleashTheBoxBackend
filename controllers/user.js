@@ -269,23 +269,23 @@ export async function updateUserCurrency(req, res) {
     const decodedToken = jwt.verify(token, process.env.TOKENSECRET);
     const userId = decodedToken.userId;
 
-    const { coinsToAdd, diamondsToAdd } = req.body;
+    const { coinsUpdate, diamondsUpdate } = req.body;
 
     if (
       !userId ||
-      typeof coinsToAdd === "undefined" ||
-      typeof diamondsToAdd === "undefined"
+      typeof coinsUpdate === "undefined" ||
+      typeof diamondsUpdate === "undefined"
     ) {
-      return res
-        .status(400)
-        .json({ error: "userId, coinsToAdd, and diamondsToAdd are required" });
+      return res.status(400).json({
+        error: "userId, coinsUpdate, and diamondsUpdate are required",
+      });
     }
 
     const user = await User.findById(userId);
 
     // Add coins and diamonds to the user's existing balance
-    user.coins += coinsToAdd;
-    user.diamonds += diamondsToAdd;
+    user.coins = coinsUpdate;
+    user.diamonds = diamondsUpdate;
     await user.save();
 
     res
